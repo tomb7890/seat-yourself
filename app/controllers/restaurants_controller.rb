@@ -18,6 +18,9 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new( restaurant_params )
+
+    @restaurant.owner = User.first # temporary
+
     if @restaurant.save
       redirect_to restaurants_path
     else
