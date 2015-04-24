@@ -1,6 +1,20 @@
-<h1>My Foo Account</h1>
+<h1>My Account</h1>
 <%=  @user.email  %>
+
+<h3>My Restaurants</h3>
+<ul>
+
+
+<!-- TODO: SHOW REST LISTINGS -->
+<%=  @user.restaurants.each do |resto|  %>
+<li>
+    <%=  resto.name  %> sits <%=  resto.seating_capacity  %>
+</li>
+<% end %>
+
+</ul>
+
+<!-- TODO: SHOW RESV AS DINER  -->
 
 <%=  link_to 'Edit Account', edit_user_path  %>
 <%=  link_to 'Create Rest Listing', new_restaurant_path  %>
-<%=  link_to 'Make Reservation', "/link"  %>
