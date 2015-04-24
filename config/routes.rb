@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :restaurants
-  resources :users, only: [:new, :create, :edit, :update, :destroy, :show, ]
+  resources :restaurants do
+    resources :reservations
+  end
+
+  resources :users, only: [:new, :create, :edit, :update, :destroy, :show, ] do
+    resources :reservations
+  end
 
   root "restaurants#index"
   # root restaurants_path
