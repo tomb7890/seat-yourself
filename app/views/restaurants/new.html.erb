@@ -1,0 +1,24 @@
+
+<h1>Add a picture</h1><%= link_to "Back to Listing", restaurants_url %><%= form_for @restaurant do |f| %>
+ <p>
+   <%= f.label :name %><br>
+   <%= f.text_field :name %>
+ </p>
+ <p>
+   <%= f.label :description %><br>
+   <%= f.text_field :description %>
+ </p>
+ <p>
+   <%= f.label :seating_capacity %><br>
+   <%= f.number_field :seating_capacity %>
+ </p>  <p>
+   <%= f.label :open_hour %>
+   <%= f.number_field :open_hour %>
+ </p>  <p>
+   <%= f.label :close_hour %>
+   <%= f.number_field :close_hour %>
+ </p>
+ <p>
+   <%= f.submit "Save" %>
+ </p>
+<% end %>

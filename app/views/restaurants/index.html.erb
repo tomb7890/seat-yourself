@@ -1,0 +1,17 @@
+<h3>Restaurants</h3>
+
+<%=  link_to "Add Restaurant Listing", new_restaurant_path   %>
+
+
+
+<ul>
+
+
+<%=  @restaurants.each  do | restaurant |   %>
+    <li>
+        <%=  restaurant.name  %>
+        <%=  restaurant.description  %>
+    </li>
+<%  end  %>
+
+</ul>
