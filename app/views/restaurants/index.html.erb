@@ -1,17 +1,27 @@
-<h3>Restaurants</h3>
+<h3>All Restaurants</h3>
 
 <%=  link_to "Add Restaurant Listing", new_restaurant_path   %>
 
+<section>
+  <button id = "current-location">Find restaurants near me </button>
+</section>
 
+<section>
+  <%= form_tag restaurants_path, method: :get do %>
 
+    <%= label_tag :search, 'Find Restaurants Nearby'%>
+
+    <%= text_field_tag :search, params[:search]  %>
+    <%= submit_tag "Search" %>
+
+  <%end %>
+</section>
 <ul>
 
+  
+  <section style="clear:both" id='restaurants'>
+    <%= render @restaurants %>
+  </section>
 
-<%  @restaurants.each  do | restaurant |   %>
-    <li>
-        <%=  restaurant.name  %>
-        <%=  restaurant.description  %>
-    </li>
-<%  end  %>
 
 </ul>
