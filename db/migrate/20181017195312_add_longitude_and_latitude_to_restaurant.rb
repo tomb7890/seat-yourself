@@ -1,4 +1,4 @@
-class AddLongitudeAndLatitudeToRestaurant < ActiveRecord::Migration
+class AddLongitudeAndLatitudeToRestaurant < ActiveRecord::Migration[4.2]
   def change
 
     add_column :restaurants, :longitude, :decimal, precision: 9, scale: 6
