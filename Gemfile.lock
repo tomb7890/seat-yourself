@@ -60,6 +60,8 @@ GEM
     crass (1.0.6)
     erubi (1.10.0)
     execjs (2.8.1)
+    faker (2.18.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.3)
     geocoder (1.6.7)
     globalid (0.4.2)
@@ -174,6 +176,7 @@ DEPENDENCIES
   bootsnap
   byebug
   coffee-rails
+  faker
   geocoder
   jbuilder (~> 2.0)
   jquery-rails
