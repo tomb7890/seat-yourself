@@ -1,0 +1,5 @@
+<ul>
+<% @allcategories.each do |c| %>
+<li><%= link_to "#{c.name}", restaurants_path(category: c.name) %>  </p></li>
+<% end %>
+</ul>

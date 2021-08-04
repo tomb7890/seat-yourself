@@ -13,7 +13,39 @@
 <h3><%= @restaurant.name %></h3>
 <p> </p>
 
-<p><strong>Address: </strong></p><%= @restaurant.address %></p>
-<p><strong>Description: </strong></p><%= @restaurant.description %></p>
+<p><strong>name:</strong></p><%= @restaurant.name %></p>
+<p><strong>seating_capacity:</strong></p><%= @restaurant.seating_capacity %></p>
+<p><strong>address:</strong></p><%= @restaurant.address %></p>
 
+
+<p><strong>categories:</strong></p>
+<ul>
+<% @restaurant.categories.each do |c|  %>
+<li><%= link_to "#{c.name}", restaurants_path(category: c.name) %>  </p></li>
+<% end %>
+
+</ul>
+
+
+<p><strong>yelpreviews:</strong></p>
+<ul>
+  <% @restaurant.yelpreviews.each do |y|  %>
+  <% unless (y.review).blank?  %>
+  <li>
+    [<%= link_to url_helper(y.review), url_helper(y.review) %>]
+  </li>
+  <% end %>
+<% end %>
+
+</ul>
+
+<p><strong>phone:</strong></p><%= @restaurant.phone %></p>
+<p><strong>pricerange:</strong></p><%= @restaurant.pricerange %></p>
+
+<% unless (@restaurant.website).blank?  %>
+<p><strong>website:</strong></p> <%= link_to url_helper(@restaurant.website),  url_helper(@restaurant.website)  %>
+<% end %>
+
+
+<p><strong>Description: </strong></p><%= @restaurant.description %></p>
 

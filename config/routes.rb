@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :reservations, only: [ :show ]
   end
 
+  resources :categories, only: [:index, :show]
+
   resources :users, only: [:new, :create, :edit, :update, :destroy, :show ]
 
   root "restaurants#index"

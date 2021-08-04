@@ -2,9 +2,13 @@
 
 <%=  link_to "Add Restaurant Listing", new_restaurant_path   %>
 
+
+<%=  link_to "Show all categories", categories_path   %>
+
 <section>
   <button id = "current-location">Find restaurants near me </button>
 </section>
+
 
 <section>
   <%= form_tag restaurants_path, method: :get do %>

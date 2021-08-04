@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,40 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181017200549) do
+ActiveRecord::Schema.define(version: 2021_08_03_210402) do
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "restaurant_id"
-    t.datetime "time"
-    t.integer  "partysize"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "reservations", ["restaurant_id"], name: "index_reservations_on_restaurant_id"
-  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
+  create_table "categories_restaurants", id: false, force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "category_id", null: false
+    t.index ["category_id", "restaurant_id"], name: "index_categories_restaurants_on_category_id_and_restaurant_id"
+    t.index ["restaurant_id", "category_id"], name: "index_categories_restaurants_on_restaurant_id_and_category_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "restaurant_id"
+    t.datetime "time"
+    t.integer "partysize"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_reservations_on_restaurant_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
+  end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.integer  "seating_capacity"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.time     "open_hour"
-    t.time     "close_hour"
-    t.integer  "user_id"
-    t.decimal  "longitude",        precision: 9, scale: 6
-    t.decimal  "latitude",         precision: 9, scale: 6
-    t.string   "address"
+    t.string "name"
+    t.string "description"
+    t.integer "seating_capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "open_hour"
+    t.time "close_hour"
+    t.integer "user_id"
+    t.decimal "longitude", precision: 9, scale: 6
+    t.decimal "latitude", precision: 9, scale: 6
+    t.string "address"
+    t.string "phone"
+    t.string "pricerange"
+    t.string "website"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "yelpreviews", force: :cascade do |t|
+    t.string "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "restaurant_id"
+    t.index ["restaurant_id"], name: "index_yelpreviews_on_restaurant_id"
   end
 
 end

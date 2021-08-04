@@ -1,20 +1,13 @@
 class RestaurantsController < ApplicationController
 
-  def index
-    @restaurants = if params[:search]
-      Restaurant.near(params[:search], 5, units: :km )
-    elsif params[:longitude] && params[:latitude]
-      Restaurant.near([params[:latitude], params[:longitude]], 5, units: :km)      
-    else 
-      Restaurant.all
-                   end
+ include RestaurantsHelper
 
+  def index
+    @restaurants = fetch_list_of_restaurants(params)
     respond_to do |format|
       format.html
       format.js
-      
     end
-                          
   end
 
   def show
@@ -51,6 +44,6 @@ class RestaurantsController < ApplicationController
 
   private
   def restaurant_params
-    params.require(:restaurant ).permit( :name, :description, :seating_capacity, :open_hour, :close_hour )
+    params.require(:restaurant ).permit( :name, :description, :seating_capacity, :open_hour, :close_hour, :category )
   end
 end
