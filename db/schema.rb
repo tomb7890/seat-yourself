@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_08_04_150112) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -19,13 +22,13 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
   end
 
   create_table "categories_restaurants", id: false, force: :cascade do |t|
-    t.integer "restaurant_id", null: false
-    t.integer "category_id", null: false
+    t.bigint "restaurant_id", null: false
+    t.bigint "category_id", null: false
     t.index ["category_id", "restaurant_id"], name: "index_categories_restaurants_on_category_id_and_restaurant_id"
     t.index ["restaurant_id", "category_id"], name: "index_categories_restaurants_on_restaurant_id_and_category_id"
   end
 
-  create_table "reservations", force: :cascade do |t|
+  create_table "reservations", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "restaurant_id"
     t.datetime "start_time"
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
-  create_table "restaurants", force: :cascade do |t|
+  create_table "restaurants", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.integer "seating_capacity"
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
     t.string "website"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -65,8 +68,11 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
     t.string "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "restaurant_id"
+    t.bigint "restaurant_id"
     t.index ["restaurant_id"], name: "index_yelpreviews_on_restaurant_id"
   end
 
+  add_foreign_key "reservations", "restaurants"
+  add_foreign_key "reservations", "users"
+  add_foreign_key "yelpreviews", "restaurants"
 end

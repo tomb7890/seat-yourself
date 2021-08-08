@@ -98,6 +98,7 @@ GEM
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    pg (1.2.3)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -158,7 +159,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -191,13 +191,13 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen
+  pg
   pry (= 0.13.1)
   pry-byebug (= 3.9.0)
   rails (~> 5.2.6)
   sass-rails (~> 5.0)
   sdoc
   spring
-  sqlite3 (~> 1.3.11)
   turbolinks
   uglifier (>= 1.3.0)
   web-console
