@@ -53,3 +53,4 @@ end
 gem 'geocoder'
 gem 'bootsnap'
 gem 'listen'
+gem 'haml'
