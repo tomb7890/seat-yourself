@@ -28,7 +28,7 @@ def show
 
   private
   def reservation_params
-    params.require(:reservation).permit(:comment, :restaurant_id)
+    params.require(:reservation).permit(:partysize, :start_time, :restaurant_id)
   end
 
   def load_restaurant
