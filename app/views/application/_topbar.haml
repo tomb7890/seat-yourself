@@ -1,0 +1,41 @@
+%nav.top-bar{"data-topbar" => ""}
+  %ul.title-area
+    %li.name
+      %h1
+        %a{:href => "#"}
+          Top Bar Title
+    %li.toggle-topbar.menu-icon
+      %a{:href => "#"}
+        %span menu
+  %section.top-bar-section
+    %ul.right
+      %li.divider
+      %li.has-dropdown
+        - if current_user
+          %a{:href => "#"}
+            = current_user.email
+        - else
+          %a{:href => "#"} Main Item 3
+        
+        %ul.dropdown
+
+          - if current_user
+            %li
+              %a{:href => logout_path } Log out 
+
+
+          - else
+
+            %li
+              %a{:href => login_path } Log In 
+            %li
+              %a{:href => "#"} Sign up
+            
+            %li
+              %a{:href => "#"} Dropdown Option
+
+              
+            %li.divider
+          %li
+            %a{:href => "#"} See all →
+/ End Header and Nav

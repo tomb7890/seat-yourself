@@ -1,0 +1,39 @@
+= render "topbar"
+
+%h3= @restaurant.name
+%p
+  %strong name:
+= @restaurant.name
+%p
+  %strong seating_capacity:
+= @restaurant.seating_capacity
+%p
+  %strong address:
+= @restaurant.address
+%p
+  %strong categories:
+%ul
+  - @restaurant.categories.each do |c|
+    %li= link_to "#{c.name}", restaurants_path(category: c.name)
+%p
+  %strong yelpreviews:
+%ul
+  - @restaurant.yelpreviews.each do |y|
+    - unless (y.review).blank?
+      %li
+        [#{link_to url_helper(y.review), url_helper(y.review)}]
+%p
+  %strong phone:
+= @restaurant.phone
+%p
+  %strong pricerange:
+= @restaurant.pricerange
+- unless (@restaurant.website).blank?
+  %p
+    %strong website:
+  = link_to url_helper(@restaurant.website),  url_helper(@restaurant.website)
+%p
+  %strong Description:
+= @restaurant.description
+
+= render partial: "reservationform", locals: { restaurant: @restaurant, reservation: @reservation } 

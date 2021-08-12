@@ -1,0 +1,33 @@
+%h3 Reservations
+%p
+  Reservations for #{@restaurant.name}
+#reservation-list
+  -# - @restaurant.reservations.each do |reservation|
+  -#   %p.reservation-text-paragraph
+  -#   .reservation-text
+  -#     = reservation.comment
+  -#   %br/
+  -#   - if reservation.user != nil
+  -#     %em
+  -#       by #{reservation.user.name}
+  -#       Added on: #{reservation.created_at}
+- if current_user
+  %h4 New Reservation
+  = form_for [@restaurant, @reservation], :remote => true do |f|
+    #reservation-form-errors
+      = render :partial => "/restaurants/reservation_form_errors"
+    - if @reservation.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@reservation.errors.count, "error")
+          prohibited this reservation from being saved:
+        %ul
+          - @reservation.errors.full_messages.each do |msg|
+            %li= msg
+
+    =render partial: "formdetail", locals: { f: f }
+    .actions
+      = f.submit "Save Reservation", class: 'button'
+- else
+  %p
+    Please #{link_to "log in", new_session_path} to add a reservation.
