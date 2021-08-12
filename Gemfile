@@ -34,7 +34,16 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 
-gem 'web-console', group: :development
+
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'web-console'
+end
+
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,3 +63,4 @@ gem 'geocoder'
 gem 'bootsnap'
 gem 'listen'
 gem 'haml'
+gem 'foundation-rails', '~> 5.5'
