@@ -1,0 +1,9 @@
+%h1 My Account
+= @user.email
+%h3 My Restaurants
+%ul
+  - @user.reservations.each do |reservation|
+    %li
+      =reservation.restaurant.name
+      
+

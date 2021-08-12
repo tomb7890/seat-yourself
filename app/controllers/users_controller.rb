@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.first
+    @user = current_user
   end
 
   def create

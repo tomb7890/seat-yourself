@@ -3,13 +3,14 @@ Rails.application.routes.draw do
   resources :restaurants do
     resources :reservations, only: [ :show, :create, :destroy ]
   end
+  resources :users, only: [:new, :create, :show] 
 
   resources :categories, only: [:index, :show]
 
 
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create] #  [:new, :create, :edit, :update, :destroy, :show ]
+
 
 
   get 'logout' => 'sessions#destroy'
