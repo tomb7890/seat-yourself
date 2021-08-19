@@ -15,29 +15,19 @@
           %a{:href => "#"}
             = current_user.email
         - else
-          %a{:href => "#"} Main Item 3
+          %a{:href => "#"} Menu
         
         %ul.dropdown
-
           - if current_user
             %li
-              %a{:href => user_path(current_user) } Show me my stuff! 
+              %a{:href => user_path(current_user) } 
             %li
               %a{:href => logout_path } Log out 
-
-
-
           - else
-
             %li
               %a{:href => login_path } Log In 
             %li
               %a{:href => signup_path } Sign up
-            %li
-              %a{:href => "#"} Dropdown Option
-
               
             %li.divider
-          %li
-            %a{:href => "#"} See all →
-/ End Header and Nav
+
