@@ -1,39 +1,87 @@
-= render "topbar"
+= render "topbar" 
+/ Logo & Search Bar
+.row
+.large-3.columns
+  %h1
+    %img{:src => "https://via.placeholder.com/400x100&text=Logo"}/
+.large-9.columns.right
+  %form
+    .row.collapse
+      .large-10.small-8.columns
+        %input{:type => "text"}/
+      .large-2.small-4.columns
+        %a.postfix.button.expand{:href => "#"} Search
+/ Product Images and Details
+.row
+%hr/
+.large-2.columns
+  %img{:src => "https://via.placeholder.com/400x300&text=[img]"}/
+  %br/
+  %img{:src => "https://via.placeholder.com/400x300&text=[img]"}/
+  %br/
+  %img{:src => "https://via.placeholder.com/400x300&text=[img]"}/
+  %br/
+  %img{:src => "https://via.placeholder.com/400x300&text=[img]"}/
+.large-5.columns
+  %img{:src => "https://via.placeholder.com/400x500"}/
+.large-5.columns
+  .row
+    %h4=@restaurant.name
+  .row
+    %h8=@restaurant.address
+  .row 
+    %h8=@restaurant.phone
+  .row 
+    %h8=@restaurant.pricerange
+  .row 
+    %h8= link_to smart_add_url_protocol( @restaurant.website ), smart_add_url_protocol( @restaurant.website )
+  .row
+    %strong categories:
+    %ul
+      - @restaurant.categories.each do |c|
+        %li= link_to "#{c.name}", restaurants_path(category: c.name)
+  .panel
+    %h5 Reservations
+    = render partial: "reservationform", locals: { restaurant: @restaurant, reservation: @reservation } 
+    -# %h6.subheader Praesent placerat dui tincidunt elit suscipit sed.
+    -# %h6.subheader Praesent placerat dui tincidunt elit suscipit sed.
+    -# %h6.subheader Praesent placerat dui tincidunt elit suscipit sed.
 
-%h3= @restaurant.name
-%p
-  %strong name:
-= @restaurant.name
-%p
-  %strong seating_capacity:
-= @restaurant.seating_capacity
-%p
-  %strong address:
-= @restaurant.address
-%p
-  %strong categories:
-%ul
-  - @restaurant.categories.each do |c|
-    %li= link_to "#{c.name}", restaurants_path(category: c.name)
-%p
-  %strong yelpreviews:
-%ul
-  - @restaurant.yelpreviews.each do |y|
-    - unless (y.review).blank?
-      %li
-        [#{link_to url_helper(y.review), url_helper(y.review)}]
-%p
-  %strong phone:
-= @restaurant.phone
-%p
-  %strong pricerange:
-= @restaurant.pricerange
-- unless (@restaurant.website).blank?
-  %p
-    %strong website:
-  = link_to url_helper(@restaurant.website),  url_helper(@restaurant.website)
-%p
-  %strong Description:
-= @restaurant.description
+    -# %a.small.button{:href => "#"} Add to Cart
+.row
+%hr/
+.large-6.columns
+  %h4 This is a content section.
+  %p Bacon ipsum dolor sit amet nulla ham qui sint exercitation eiusmod commodo, chuck duis velit. Aute in reprehenderit, dolore aliqua non est magna in labore pig pork biltong. Eiusmod swine spare ribs reprehenderit culpa. Boudin aliqua adipisicing rump corned beef.
+.large-6.columns
+  %h4 This is a content section.
+  %p Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow. Nulla corned beef sunt ball tip, qui bresaola enim jowl. Capicola short ribs minim salami nulla nostrud pastrami.
+.row
+%hr/
+.large-12.columns
+  %h4 You might also like:
+  %img{:src => "https://via.placeholder.com/200x150&text=[img]"}/
+  %img{:src => "https://via.placeholder.com/200x150&text=[img]"}/
+  %img{:src => "https://via.placeholder.com/200x150&text=[img]"}/
+  %img{:src => "https://via.placeholder.com/200x150&text=[img]"}/
+%footer.row
+.large-12.columns
+  %hr/
+  .row
+    .large-6.columns
+      %p © Copyright no one at all. Go to town.
+    .large-6.columns
+      %ul.inline-list.right
+        %li
+          %a{:href => "#"} Link 1
+        %li
+          %a{:href => "#"} Link 2
+        %li
+          %a{:href => "#"} Link 3
+        %li
+          %a{:href => "#"} Link 4
+%script{:src => "https://code.jquery.com/jquery-2.1.4.min.js"}
+%script{:src => "https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"}
+:javascript
+$(document).foundation();
 
-= render partial: "reservationform", locals: { restaurant: @restaurant, reservation: @reservation } 

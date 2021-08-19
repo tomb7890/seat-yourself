@@ -1,0 +1,6 @@
+<% if @reservation.errors.present? %>
+  $("#reservation-form-errors").html("<%= escape_javascript(render(:partial => '/restaurants/reservation_form_errors')) %>");
+<% else %>
+  $("#reservation-form-errors").html("");
+  $("#new_reservation")[0].reset();
+<% end %>

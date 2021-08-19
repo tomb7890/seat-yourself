@@ -3,23 +3,37 @@ class ReservationsController < ApplicationController
 before_action :load_restaurant
 before_action :ensure_logged_in, only: [:create, :destroy]
 
+
+
 def show
     @reservation = Reservation.find(params[:id])
   end
 
-  def create
+
+#ReservationsController#create 
+  def create 
     @reservation = @restaurant.reservations.build(reservation_params)
     @reservation.user = current_user
-    respond_to do |format|
+
+    desired_time = DateTime.new( params[:reservation]["start_time(1i)"].to_i,
+                                 params[:reservation]["start_time(2i)"].to_i,
+                                 params[:reservation]["start_time(3i)"].to_i,
+                                 params[:reservation]["start_time(4i)"].to_i,
+                                 params[:reservation]["start_time(5i)"].to_i)
+    
+    desired_partysize = (reservation_params[:partysize]).to_i
+
+    if @restaurant.available?( desired_partysize, desired_time )
       if @reservation.save
-        format.html { redirect_to restaurant_url(@restaurant.id), notice: 'Reservation added.' }
-        format.js {}
-      else
-        format.html { render 'restaurants/show', alert: 'There was an error.'  }
-        format.js {}
+        redirect_to restaurant_reservation_path(@restaurant, @reservation), notice: 'Reservation added.'
+      else 
+        # errors handled by create.js.erb 
       end
+    else
+      redirect_to restaurant_path(@restaurant), alert: "Requested party size exceeds #{@restaurant.name}\'s seating capacity at #{desired_time}."
     end
   end
+
 
   def destroy
     @reservation = Reservation.find(params[:id])

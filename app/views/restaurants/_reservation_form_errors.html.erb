@@ -1,6 +1,6 @@
 <% if @reservation.errors.present? %>
 <% @reservation.errors.full_messages.each do |error| %>
-<div class="alert">
+<div class="alert-box round alert">
   <%= error %>
 </div>
 <% end %>

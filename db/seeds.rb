@@ -14,7 +14,10 @@ def maybe_create_database_records(table, index, user)
                          phone: table[index]['Restaurant Phone'],
                          pricerange: table[index]['Restaurant Price Range'],
                          website: table[index]['Restaurant Website'],
-                         user_id: user.id
+                         user_id: user.id,
+
+                         # just hard code the seating_capacity for now 
+                         seating_capacity: 35 
                        })
   end
   # ensure category is in the db 
@@ -51,10 +54,10 @@ def load_data
 end
 
 
-User.destroy_all
+Reservation.destroy_all
+Yelpreview.destroy_all
 Restaurant.destroy_all
 Category.destroy_all
-Yelpreview.destroy_all
-
+User.destroy_all
 load_data
 
