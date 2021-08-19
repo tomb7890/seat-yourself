@@ -1,9 +1,9 @@
 %h1 My Account
 = @user.email
-%h3 My Restaurants
+%h3 My Reservations
 %ul
-  - @user.reservations.each do |reservation|
+  - @user.reservations.each do |r|
     %li
-      =reservation.restaurant.name
+      = link_to r.restaurant.name, restaurant_reservation_path(r.restaurant.id, r.id )
       
 
