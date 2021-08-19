@@ -20,7 +20,7 @@
         %ul.dropdown
           - if current_user
             %li
-              %a{:href => user_path(current_user) } 
+              %a{:href => user_path(current_user) } User Profile
             %li
               %a{:href => logout_path } Log out 
           - else
