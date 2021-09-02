@@ -1,19 +1,20 @@
-
-
-.large-3.large-centered.columns
-  .login-box
-    .row
-      .large-12.columns
-        = form_tag sessions_path do
-          .row
-            .large-12.columns.field
-              = label_tag :email
-              = text_field_tag :email, params[:email]
-          .row
-            .large-12.columns.field
-              = label_tag :password
-              = password_field_tag :password
-          .row
-            .large-12.large-centered.columns.actions
-              = submit_tag "Log In", class: "button expand"
+.login-and-signup-view
+  .row
+    .columns
+      = form_tag sessions_path, :class => 'new-user-form' do
+        .row
+          .columns
+            %h3
+              Log in
+        .row
+          .columns
+            = label_tag :email
+            = text_field_tag(:email, "", placeholder: "Email") 
+        .row
+          .columns
+            = label_tag :password
+            = password_field_tag(:password, "", placeholder: "Password")
+        .row
+          .columns
+            = submit_tag "Log In" , class: "submit-button"
 
