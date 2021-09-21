@@ -1,52 +1,17 @@
-/ End Top Bar
-%br
-.row
-  .small-6.small-centered.columns
+.row.show_reservation
+  .columns
     .row
-      .panel
-        %h5
-          .row
-            %h4=link_to @restaurant.name, @restaurant
-          .row
-            %h8=@restaurant.address
-          .row 
-            %h8=@restaurant.phone
+      =link_to @restaurant.name, @restaurant
+    .row
+      =@restaurant.address
+    .row 
+      =@restaurant.phone
 
-          .row 
-            %h8=link_to smart_add_url_protocol(@restaurant.website), smart_add_url_protocol(@restaurant.website)
-          .row
-            .panel.callout.radius
-              .row
-                %h3 
-                  We look forward to seeing your party of #{@reservation.partysize} on
-                %h3=    prettyprint( @reservation.start_time )
-
-
-
-     
-    
-    
-    
-    
-
-
-
-.row
-  %footer.row
-    .large-12.columns
-      %hr/
-      .row
-        .large-6.columns
-          %p © Copyright no one at all. Go to town.
-        .large-6.small-12.columns
-          %ul.inline-list.right
-            %li
-              %a{:href => "#"} Link 1
-            %li
-              %a{:href => "#"} Link 2
-            %li
-              %a{:href => "#"} Link 3
-            %li
-              %a{:href => "#"} Link 4
+    .row 
+      =link_to smart_add_url_protocol(@restaurant.website), smart_add_url_protocol(@restaurant.website)
+    .row
+      .callout.panel.radius 
+        We look forward to seeing your party of #{@reservation.partysize} on
+        = prettyprint( @reservation.start_time )
 
 

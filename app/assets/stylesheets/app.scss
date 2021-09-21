@@ -1,5 +1,18 @@
 @import "foundation";
 
+.show_reservation {
+    @include panel();
+
+    @media #{$medium-up} {
+	padding: 10em;
+    }
+
+    .reservation_mesage  {
+        @include panel();
+
+    }
+}
+
 .login-and-signup-view {
     padding: 2em;
     @media #{$medium-up} {
