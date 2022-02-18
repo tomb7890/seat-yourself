@@ -12,6 +12,6 @@
     .row
       .callout.panel.radius 
         We look forward to seeing your party of #{@reservation.partysize} on
-        = prettyprint( @reservation.start_time )
+        = @reservation.format_time
 
 

@@ -4,3 +4,11 @@ class Reservation < ApplicationRecord
 
   validates :partysize, numericality: { greater_than_or_equal_to: 1,  only_integer: true } 
 end
+
+
+
+  def format_time
+    Time.zone =  restaurant.time_zone 
+    start_time.in_time_zone.strftime('%A, %b %d %Y  at %H:%M:%S %Z %Y')
+  end
+
