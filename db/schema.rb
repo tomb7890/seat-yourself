@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_04_150112) do
+ActiveRecord::Schema.define(version: 2022_02_22_162844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,6 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
     t.integer "seating_capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "open_hour"
-    t.time "close_hour"
     t.integer "user_id"
     t.decimal "longitude", precision: 9, scale: 6
     t.decimal "latitude", precision: 9, scale: 6
@@ -54,6 +52,8 @@ ActiveRecord::Schema.define(version: 2021_08_04_150112) do
     t.string "phone"
     t.string "pricerange"
     t.string "website"
+    t.integer "open_hour"
+    t.integer "close_hour"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
