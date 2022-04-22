@@ -19,4 +19,8 @@ class Restaurant < ApplicationRecord
     party_size <= seating_capacity - reservations.where(start_time: start_time).sum(:partysize)
   end
 
+  def time_zone
+    ActiveSupport::TimeZone.new('America/Toronto')
+  end
+
 end
