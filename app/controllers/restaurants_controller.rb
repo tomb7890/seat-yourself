@@ -11,11 +11,9 @@ class RestaurantsController < ApplicationController
   end
 
   def show
-
     @restaurant = Restaurant.find(params[:id])
     if current_user
       @reservation = @restaurant.reservations.build
-
     end
   end
 
@@ -29,13 +27,11 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new( restaurant_params )
-
     @restaurant.owner = User.first # temporary
-
     if @restaurant.save
       redirect_to restaurants_path
     else
-      render :new
+      render :new, alert: "Restauarnt party size exceeds ."
     end
   end
 
