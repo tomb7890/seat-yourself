@@ -26,8 +26,27 @@ class Restaurant < ApplicationRecord
     'Eastern Time (US & Canada)'
   end
 
+  def hours_ok?(start_time)
+    opening_hour = Time.zone.local(start_time.year,
+                                start_time.month,
+                                start_time.day,
+                                open_hour,
+                                0,
+                                0 )
+
+    closing_hour = Time.zone.local(start_time.year,
+                                start_time.month,
+                                start_time.day,
+                                close_hour - 1,
+                                0,
+                                0 )
+
+    start_time.localtime.between?(opening_hour, closing_hour)
+  end
+
 
   def available?(party_size, start_time)
+    return false unless hours_ok?(start_time) 
     party_size <= seating_capacity - reservations.where(start_time: start_time).sum(:partysize)
   end
 
