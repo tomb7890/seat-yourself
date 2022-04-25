@@ -7,6 +7,18 @@ class Restaurant < ApplicationRecord
   has_many :yelpreviews
   validates :name, :presence => true
 
+
+  validates :open_hour, numericality: { only_integer: true,
+                                        greater_than_or_equal_to: 1,
+                                        less_than_or_equal_to: 24 }
+  
+
+  validates :close_hour, numericality: { only_integer: true,
+                                         greater_than_or_equal_to: 1,
+                                         less_than_or_equal_to: 24 }
+
+  validates :seating_capacity, numericality: { only_integer: true } 
+
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
