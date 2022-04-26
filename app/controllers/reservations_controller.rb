@@ -15,11 +15,11 @@ def show
     @reservation = @restaurant.reservations.build(reservation_params)
     @reservation.user = current_user
 
-    desired_time = DateTime.new( params[:reservation]["start_time(1i)"].to_i,
-                                 params[:reservation]["start_time(2i)"].to_i,
-                                 params[:reservation]["start_time(3i)"].to_i,
-                                 params[:reservation]["start_time(4i)"].to_i,
-                                 params[:reservation]["start_time(5i)"].to_i)
+    t = Time.zone.local( params[:reservation]["start_time(1i)"].to_i,
+                         params[:reservation]["start_time(2i)"].to_i,
+                         params[:reservation]["start_time(3i)"].to_i,
+                         params[:reservation]["start_time(4i)"].to_i,
+                         params[:reservation]["start_time(5i)"].to_i)
     
     desired_partysize = (reservation_params[:partysize]).to_i
 
