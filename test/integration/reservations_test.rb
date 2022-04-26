@@ -56,5 +56,31 @@ class ReservationsTest < ActionDispatch::IntegrationTest
 
     end
   end
+
+
+  test "unsuccessful reservation creation when outside opening hours" do
+
+
+    rx = {                                                      
+      "start_time(1i)": 2001,
+          "start_time(2i)": 1,
+          "start_time(3i)": 1,
+          "start_time(4i)": 23,
+          "start_time(5i)": 30,
+        partysize: 9,
+        restaurant_id: @restaurant.id,
+        user_id: @restaurant_goer.id
+    }
+
+
+    assert_no_difference('Reservation.count') do
+      post restaurant_reservations_path(@restaurant.id) , params:{
+      reservation: rx }
+      
+
+    end
+  end
+
+
   
 end
