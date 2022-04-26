@@ -15,8 +15,8 @@ class ReservationsTest < ActionDispatch::IntegrationTest
       "start_time(1i)": 2001,
           "start_time(2i)": 1,
           "start_time(3i)": 2,
-          "start_time(4i)": 3,
-          "start_time(5i)": 4,
+          "start_time(4i)": 18, # 6pm
+          "start_time(5i)": 0,
         partysize: 9,
         restaurant_id: restaurant.id,
         user_id: user.id
