@@ -11,5 +11,7 @@ FactoryBot.define do
     
     name { "Canoe" } 
     seating_capacity { 100 }
+    open_hour { 11 }  # 11am
+    close_hour { 21 } # 9pm
   end
 end
