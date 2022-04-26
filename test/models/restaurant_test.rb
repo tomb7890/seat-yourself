@@ -5,7 +5,12 @@ class RestaurantTest < ActiveSupport::TestCase
 
   setup do
     @restaurant = create(:restaurant)
-    @start_time = DateTime.new(2021, 8, 4, 14)
+    Time.zone = @restaurant.time_zone
+
+    @start_time =  Time.zone.local(2021, 8, 4,
+                                13,0,0 )
+  end
+  
   end
 
 
