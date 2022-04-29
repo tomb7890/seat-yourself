@@ -27,6 +27,12 @@ def maybe_create_database_records(table, index, user)
   if r.categories.find_by(name: current_csv_category).nil?
     r.categories << c
   end
+
+  # set open and close hours 
+  r.open_hour =  9 + rand(2)
+  r.close_hour = r.open_hour + rand(23 - r.open_hour)
+
+  
   r.save
   r.yelpreviews.find_or_create_by(review: table[index]['Restaurant Yelp URL'])
 end 
@@ -43,7 +49,7 @@ def load_data
   table = CSV.parse(File.read("data/trt_rest.csv"), headers: true)
 
   # take a random sample of 300 records 
-  random_indices = (1..(table.size).to_i).to_a.shuffle.slice(0, (300).to_i )
+  random_indices = (1..(table.size).to_i).to_a.shuffle.slice(0, (100).to_i )
 
   while not random_indices.empty?   
     index = random_indices.pop 
