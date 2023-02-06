@@ -37,12 +37,19 @@ def maybe_create_database_records(table, index, user)
   
   r.save
   r.yelpreviews.find_or_create_by(review: table[index]['Restaurant Yelp URL'])
-end 
+end
+
+                            
 
 def load_data
+
+  owner ={}
+  owner[:name]=Faker::Name::name
+  owner[:email]=Faker::Internet.email(name: owner[:name] )
+
   user = User.create!({
-                        email: "jcpenny.shopper@example.com",
-                        name: "Susie McDonald",
+                        name: owner[:name],
+                        email: owner[:email],
                         password: "pass",
                         password_confirmation: "pass"
                       }
