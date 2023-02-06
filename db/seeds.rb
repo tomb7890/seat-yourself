@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'csv'
+require 'faker'
 
 def maybe_create_database_records(table, index, user)
   current_csv_category = table[index]['﻿Category']
@@ -8,6 +9,7 @@ def maybe_create_database_records(table, index, user)
   if r.nil? 
     r = Restaurant.new({
                          name: table[index]['Restaurant Name'],
+                         description: Faker::Restaurant.description, 
                          longitude: table[index]['Restaurant Longitude'],
                          latitude: table[index]['Restaurant Latitude'],
                          address: table[index]['Restaurant Address'],
