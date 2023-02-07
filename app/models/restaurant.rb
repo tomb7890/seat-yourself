@@ -54,4 +54,16 @@ class Restaurant < ApplicationRecord
     ActiveSupport::TimeZone.new('America/Toronto')
   end
 
+  def hours
+    "#{_format_hours_portion(open_hour)}-#{_format_hours_portion(close_hour)}"
+  end
+
+  def _format_hours_portion( hr )
+    if hr > 12
+      "#{(hr-12)} p.m." 
+    else
+      "#{hr} a.m."
+    end
+  end
+
 end
